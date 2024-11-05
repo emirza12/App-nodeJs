@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, RouterModule } from "@angular/router";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
     selector: 'app-lesson-edit-form',
@@ -9,7 +10,7 @@ import { Router, RouterModule } from "@angular/router";
     ],
     templateUrl: './lesson-edit-form.component.html'
 })
-export class LessonEditFormComponent implements OnInit, OnDestroy {
+export class LessonEditFormComponent {
     constructor(private router: Router) {
         console.log("LessonEditFormComponent.constructor()");
     }
