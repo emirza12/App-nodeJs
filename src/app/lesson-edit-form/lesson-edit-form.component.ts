@@ -5,7 +5,6 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './lesson-edit-form.component.html',
-  styleUrl: './lesson-edit-form.component.css'
 })
 export class LessonEditFormComponent {
 
