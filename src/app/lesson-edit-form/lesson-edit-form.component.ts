@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router, RouterModule } from "@angular/router";
-import {ActivatedRoute} from "@angular/router";
+import { Router, RouterModule } from '@angular/router';
+import { UserSettingService } from '../user-setting.service'; // Import the service
 
 @Component({
     selector: 'app-lesson-edit-form',
@@ -10,8 +10,11 @@ import {ActivatedRoute} from "@angular/router";
     ],
     templateUrl: './lesson-edit-form.component.html'
 })
-export class LessonEditFormComponent {
-    constructor(private router: Router) {
+export class LessonEditFormComponent implements OnInit, OnDestroy {
+    constructor(
+        private router: Router,
+        private userSettingService: UserSettingService  // Inject the service
+    ) {
         console.log("LessonEditFormComponent.constructor()");
     }
 
@@ -24,6 +27,7 @@ export class LessonEditFormComponent {
     }
 
     onClickSubmit() {
+        this.userSettingService.lastLessonId = 1234; // Set the lastLessonId
         this.router.navigate(['lesson-list']).then(() => {
             console.log("Navigation to lesson-list successful!");
         }).catch(error => {
