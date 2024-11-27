@@ -1,44 +1,45 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-3">Title:</div>
-    <div class="col-md-9"><input type="text" class="form-control" id="title" placeholder="Enter title"></div>
-  </div>
-  <div class="row">
-    <div class="col-md-3">Description:</div>
-    <div class="col-md-9"><textarea class="form-control" id="description" placeholder="Enter description"></textarea></div>
-  </div>
-  <div class="row">
-    <div class="col-md-3">Category:</div>
-    <div class="col-md-9"><select class="form-control" id="category">
-      <option value="">Select category</option>
-      <!-- add options here -->
-    </select></div>
-  </div>
-  <div class="row">
-    <div class="col-md-3">Level:</div>
-    <div class="col-md-9"><select class="form-control" id="level">
-      <option value="">Select level</option>
-      <!-- add options here -->
-    </select></div>
-  </div>
-  <div class="row">
-    <div class="col-md-3">Prerequisite:</div>
-    <div class="col-md-9"><input type="text" class="form-control" id="prerequisite" placeholder="Enter prerequisite (comma separated)"></div>
-  </div>
-  <div class="row">
-    <div class="col-md-3">Tags:</div>
-    <div class="col-md-9">
-      <input type="text" class="form-control" id="tags" placeholder="Enter tags (comma separated)">
-      <button class="btn btn-primary" id="add-tag-btn">Add</button>
-      <ul id="tag-list"></ul>
+<form [formGroup]="lessonForm" (ngSubmit)="onClickSubmit()">
+  <div class="container">
+
+    <div class="row mt-2">
+      <label class="col-md-1" for="title" [class]="lessonForm.get('title')?.invalid ? 'text-danger' : ''">Title</label>
+      <input id="title" type="text" class="form-control col-md-11" formControlName="title">
+    </div>
+
+    <div class="row mt-2">
+      <label class="col-md-1" for="description" [class]="lessonForm.get('description')?.invalid ? 'text-danger' : ''">Description</label>
+      <textarea id="description" class="form-control col-md-11" rows="4" formControlName="description"></textarea>
+    </div>
+
+    <div class="row mt-2">
+      <label class="col-md-1" for="category" [class]="lessonForm.get('category')?.invalid ? 'text-danger' : ''">Category</label>
+      <input id="category" type="text" class="form-control col-md-3" formControlName="category">
+
+      <label class="col-md-1" for="level" [class]="lessonForm.get('level')?.invalid ? 'text-danger' : ''">Level</label>
+      <input id="level" type="number" class="form-control col-md-3" min="1" max="10" formControlName="level">
+
+      <label class="col-md-1" for="prerequisites" [class]="lessonForm.get('prerequisite')?.invalid ? 'text-danger' : ''">Prerequisite</label>
+      <input id="prerequisites" type="text" class="form-control col-md-3" formControlName="prerequisite">
+    </div>
+
+    <div class="row mt-2">
+      <label class="col-md-1" for="tags" [class]="lessonForm.get('tags')?.invalid ? 'text-danger' : ''">Tags</label>
+      <input id="tags" type="text" class="form-control col-md-11" placeholder="Enter tags" formControlName="tags">
+    </div>
+
+    <div class="row mt-1">
+      <label class="col-md-1" for="license" [class]="lessonForm.get('copyright')?.invalid ? 'text-danger' : ''">License</label>
+      <input id="license" type="text" class="form-control col-md-11" formControlName="copyright">
+    </div>
+
+    <div class="row mt-2">
+      <div class="col-md-12">
+        <button type="submit" class="btn btn-primary" [disabled]="!lessonForm.valid">Submit</button>
+        <button class="btn btn-primary" routerLink="/lesson/1234">Lesson 1234</button>
+        <span *ngIf="lessonForm.invalid" class="col-md-8 text-danger">
+          Please fill out all required fields.
+        </span>
+      </div>
     </div>
   </div>
-  <div class="row">
-    <div class="col-md-3">Copyright:</div>
-    <div class="col-md-9"><input type="text" class="form-control" id="copyright" placeholder="Enter copyright"></div>
-  </div>
-  <button type="button" class="btn btn-primary" (click)="onClickSubmit()">Submit</button>
-  <button class="btn btn-primary" routerLink="/lesson/1234">Detail for lesson 1234</button>
-
-
-</div>
+</form>
